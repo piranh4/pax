@@ -9,17 +9,21 @@ package pir.mods.peace;
  * 
  */
 import java.io.File;
+import java.util.logging.Level;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -40,6 +44,7 @@ public class Peace {
 	int peaceBlockID;
 	int peaceOreID;
 	int peaceIngotID;
+	static int flaxCropID;
 	
 	// armor IDs
 	int peaceHelmetID;
@@ -54,10 +59,31 @@ public class Peace {
 	int peaceHoeID;
 	int peaceSwordID;
 	
+	// item IDs
+	static int flaxSeedID;
+	static int flaxStrawID;
+	static int flaxBreadID;
+	
 	// blocks
 	public static Block peaceBlock;
 	public static Block peaceOre;
-	public static Block flaxCrop = new FlaxCrop(504);
+	public static Block flaxCrop = new FlaxCrop(flaxCropID);
+	
+	// items
+	public static Item peaceIngot;
+	public static Item flaxSeeds;
+    public static Item flaxStraw;
+    public static Item flaxBread;
+	public static Item paintRed;
+
+	// armor
+	public static Item peaceHelmet;
+	public static Item peaceChest;
+	public static Item peaceLeggings;
+	public static Item peaceBoots;
+	
+	public static EnumArmorMaterial peaceArmor = 
+			EnumHelper.addArmorMaterial(PeaceInfo.ARMOR.PEACE_MATERIAL, 21,	new int[] { 4, 10, 4, 3 }, 5);	
 	
 	// tools
 	public static Item peaceAxe;
@@ -66,41 +92,33 @@ public class Peace {
 	public static Item peaceHoe;
 	public static Item peaceSword;
 	
-	// items
-	public static Item peaceIngot;
-	public static ItemSeeds flaxSeeds = (ItemSeeds) new ItemSeeds(5002, flaxCrop.blockID, Block.tilledField.blockID)
-		.setUnlocalizedName("flaxSeeds")    
-		.setTextureName(PeaceInfo.ID + ":seeds_flax");
-    public static Item flaxStraw = new GenericItem(5003);    
-	public static Item paintRed = new GenericItem(5004)
-	.setMaxStackSize(1)
-	.setCreativeTab(CreativeTabs.tabMisc)
-	.setUnlocalizedName("paintRed")
-	.setTextureName(PeaceInfo.ID.toLowerCase() + ":bucket_paint_red");
-
-	// armor
-	public static Item peaceHelmet;
-	public static Item peaceChest;
-	public static Item peaceLeggings;
-	public static Item peaceBoots;
-	
-	// materials
-	// diamond has 33 durability and 10 enchantibility, frex 
-	public static EnumArmorMaterial peaceArmor = 
-			EnumHelper.addArmorMaterial(PeaceInfo.ARMOR.PEACE_MATERIAL, 
-					21, 
-					new int[] { 4, 10, 4, 3 }, 
-					5);	
-	
-	
-    // The instance of your mod that Forge uses.
-    @Instance(PeaceInfo.ID)
+	/**
+	 * material parameters:
+	 * 1. int - level of material the tool can harvest
+	 * 2. int - number of uses before tool breaks
+	 * 3. float - strength of this material against blocks for which it is effective 
+	 * 4. float - damage versus entities
+	 * 5. int - enchantability factor
+	 * 
+	 * references:
+	 * 
+     * WOOD(0, 59, 2.0F, 0.0F, 15),
+     * STONE(1, 131, 4.0F, 1.0F, 5),
+     * IRON(2, 250, 6.0F, 2.0F, 14),
+     * DIAMOND(3, 1561, 8.0F, 3.0F, 10),
+     * GOLD(0, 32, 12.0F, 0.0F, 22);
+    */	
+	public static EnumToolMaterial peaceTools = 
+			EnumHelper.addToolMaterial(PeaceInfo.TOOLS.PEACE_TYPE, 3, 3, 15F, 2, 22);
+    
+	// this mod's instance for forge
+	@Instance(PeaceInfo.ID)
     public static Peace instance;
    
-    // Says where the client and server 'proxy' code is loaded.
     @SidedProxy(clientSide=PeaceInfo.CLIENTPROXY + "ClientProxy", serverSide=PeaceInfo.COMMONPROXY + "CommonProxy")
     public static CommonProxy proxy;
    
+    // before we do anything else, initialize stuff
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) 
     {
@@ -123,17 +141,7 @@ public class Peace {
 	{
 		MinecraftForge.EVENT_BUS.register(manager);
 	
-        //
-        // flax
-        //
-        MinecraftForge.addGrassSeed(new ItemStack(flaxSeeds), 10);
-
-        LanguageRegistry.addName(flaxStraw, "Flax");
-        GameRegistry.addShapelessRecipe(new ItemStack(flaxSeeds, 4),
-                new ItemStack(flaxStraw));
-
-        GameRegistry.registerBlock(flaxCrop, "flaxCrop");
-    }
+     }
             
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
@@ -142,43 +150,81 @@ public class Peace {
     
 	private void SetupConfiguration(File configFile)
 	{
-		// configuration code
+		/*
+		 *  we keep these values in a file because forge will not retain the same
+		 *  item IDs as we define, since it needs to keep all mods compatible and
+		 *  avoid potential conflicts.  we need therefore to keep track of them
+		 *  ourselves.
+		 */
 		Configuration config = new Configuration(configFile);
 		
-		config.load();		
-	
-		peaceBlockID = config.get("Block IDs", "Peace Block ID", 1000).getInt();
-		peaceOreID = config.get("Block IDs", "Peace Ore ID", 1001).getInt();
-		peaceIngotID = config.get("Item IDs", "Peace Ingot ID", 1002).getInt();
-
-		peaceAxeID = config.get("Item IDs", "Peace Axe ID", 1003).getInt();
-		peaceShovelID = config.get("Item IDs", "Peace Shovel ID", 1004).getInt();
-		peacePickaxeID = config.get("Item IDs", "Peace Pickaxe ID", 1005).getInt();
-		peaceHoeID = config.get("Item IDs", "Peace Hoe ID", 1006).getInt();
-		peaceSwordID = config.get("Item IDs", "Peace Sword ID", 1007).getInt();
-	
-		peaceHelmetID = config.get("Armor IDs", "Peace Helmet ID", 1008).getInt();
-		peaceChestID = config.get("Armor IDs", "Peace Chest ID", 1009).getInt();
-		peaceLeggingsID = config.get("Armor IDs", "Peace Leggings ID", 1010).getInt();
-		peaceBootsID = config.get("Armor IDs", "Peace Boots ID", 1011).getInt();
+		try
+		{
+			config.load();		
 		
-		config.save();
+			peaceBlockID = config.get("Block IDs", "Peace Block ID", 1000).getInt();
+			peaceOreID = config.get("Block IDs", "Peace Ore ID", 1001).getInt();
+			peaceIngotID = config.get("Item IDs", "Peace Ingot ID", 1002).getInt();
+	
+			peaceAxeID = config.get("Item IDs", "Peace Axe ID", 1003).getInt();
+			peaceShovelID = config.get("Item IDs", "Peace Shovel ID", 1004).getInt();
+			peacePickaxeID = config.get("Item IDs", "Peace Pickaxe ID", 1005).getInt();
+			peaceHoeID = config.get("Item IDs", "Peace Hoe ID", 1006).getInt();
+			peaceSwordID = config.get("Item IDs", "Peace Sword ID", 1007).getInt();
+		
+			peaceHelmetID = config.get("Armor IDs", "Peace Helmet ID", 1008).getInt();
+			peaceChestID = config.get("Armor IDs", "Peace Chest ID", 1009).getInt();
+			peaceLeggingsID = config.get("Armor IDs", "Peace Leggings ID", 1010).getInt();
+			peaceBootsID = config.get("Armor IDs", "Peace Boots ID", 1011).getInt();
+			
+			flaxSeedID = config.get("Item IDs", "Flax Seed ID", 1012).getInt();
+			flaxStrawID = config.get("Item IDs", "Flax Straw ID", 1013).getInt();
+			flaxBreadID = config.get("Item IDs", "Flax Bread ID", 1014).getInt();
+			flaxCropID = config.get("Item IDs", "Flax Crop ID", 1015).getInt();
+
+
+		}
+		catch(Exception e)
+		{
+			FMLLog.log(Level.SEVERE, e, "Mod " + PeaceInfo.NAME + "has a problem loading its config file");
+		}
+		finally 
+		{
+			config.save();
+		}
 	}
+	
 	private void InitializeAssets()
 	{
-		// initialize our blocks and item stacks
+		// initialize blocks and item stacks
 		this.peaceBlock = new PeaceBlock(peaceBlockID, Material.rock);
 		this.peaceOre = new PeaceOre(peaceOreID);
 		
-		// initialize our items
+		// initialize items
 		this.peaceIngot = new PeaceIngot(peaceIngotID);
-//		this.peaceAxe = new PeaceAxe(peaceAxeID);
-//		this.peaceShovel = new PeaceShovel(peaceShovelID);
-//		this.peacePickaxe = new PeacePickaxe(peacePickaxeID);
-//		this.peaceHoe = new PeaceHoe(peaceHoeID);
-//		this.peaceSword = new PeaceSword(peaceSwordID);
+		this.flaxSeeds = new ItemSeeds(flaxSeedID, flaxCrop.blockID, Block.tilledField.blockID)
+			.setUnlocalizedName("flaxSeeds")    
+			.setTextureName(PeaceInfo.ID + ":seeds_flax");
+    	this.flaxStraw = new Item(flaxStrawID)    
+			.setUnlocalizedName("flaxStraw")    
+			.setTextureName(PeaceInfo.ID + ":flax_straw");
+    	this.flaxBread = new Item(flaxBreadID)
+			.setUnlocalizedName("flaxBread")    
+			.setTextureName(PeaceInfo.ID + ":flax_bread");
+		this.paintRed = new Item(5004)
+			.setMaxStackSize(1)
+			.setCreativeTab(CreativeTabs.tabMisc)
+			.setUnlocalizedName("paintRed")
+			.setTextureName(PeaceInfo.ID.toLowerCase() + ":bucket_paint_red");
+
+		// initialize tools
+		this.peaceAxe = new PeaceAxe(peaceAxeID, peaceTools);
+		this.peaceShovel = new PeaceShovel(peaceShovelID, peaceTools);
+		this.peacePickaxe = new PeacePickaxe(peacePickaxeID, peaceTools);
+		this.peaceHoe = new PeaceHoe(peaceHoeID, peaceTools);
+		this.peaceSword = new PeaceSword(peaceSwordID, peaceTools);
 		
-		// Initialize our armor
+		// initialize our armor
 		peaceHelmet = new Armor(peaceHelmetID, peaceArmor, 0, 0, PeaceInfo.ARMOR.PEACE_TYPE);
 		peaceChest = new Armor(peaceChestID, peaceArmor, 0, 1, PeaceInfo.ARMOR.PEACE_TYPE);
 		peaceLeggings = new Armor(peaceLeggingsID, peaceArmor, 0, 2, PeaceInfo.ARMOR.PEACE_TYPE);
@@ -194,19 +240,27 @@ public class Peace {
 		LanguageRegistry.addName(peaceChest, PeaceInfo.ARMOR.PEACE_CHEST);
 		LanguageRegistry.addName(peaceLeggings, PeaceInfo.ARMOR.PEACE_LEGGINGS);
 		LanguageRegistry.addName(peaceBoots, PeaceInfo.ARMOR.PEACE_BOOTS);		
+		LanguageRegistry.addName(peaceAxe, PeaceInfo.TOOLS.PEACE_AXE);
+		LanguageRegistry.addName(peaceShovel, PeaceInfo.TOOLS.PEACE_SHOVEL);
+		LanguageRegistry.addName(peacePickaxe, PeaceInfo.TOOLS.PEACE_PICKAXE);
+		LanguageRegistry.addName(peaceHoe, PeaceInfo.TOOLS.PEACE_HOE);
+		LanguageRegistry.addName(peaceSword, PeaceInfo.TOOLS.PEACE_SWORD);
         LanguageRegistry.addName(flaxSeeds, "Flax Seeds");
-}
+        LanguageRegistry.addName(flaxStraw, "Flax");
+	}
 	
 	private void MinecraftForgeSetup()
 	{
 		MinecraftForge.setBlockHarvestLevel(peaceBlock, "pickaxe", 2);
 		MinecraftForge.setBlockHarvestLevel(peaceOre, "pickaxe", 3);
-	}
+        MinecraftForge.addGrassSeed(new ItemStack(flaxSeeds), 10);
+}
 	
 	private void RegisterBlocks()
 	{
 		GameRegistry.registerBlock(peaceBlock, PeaceInfo.BLOCKS.PEACE_BLOCK_NAME);
    	    GameRegistry.registerBlock(peaceOre, PeaceInfo.BLOCKS.PEACE_ORE_BLOCK_NAME);
+        GameRegistry.registerBlock(flaxCrop, "flaxCrop");
 	}
 	
 	private void RegisterRecipes()
@@ -220,7 +274,6 @@ public class Peace {
         
         // peace ingot recipes
 		GameRegistry.addSmelting(peaceOreID, new ItemStack(peaceIngot), 0.7f);
-	
 		GameRegistry.addRecipe(new ItemStack(peacePickaxe), 
 				"xxx", " y ", " y ",
 				'x', peaceIngot,
@@ -246,31 +299,35 @@ public class Peace {
 				'x', peaceIngot,
 				'y', new ItemStack(Item.stick)
 				);
-		
 		GameRegistry.addRecipe(new ItemStack(peaceBlock), 
 				"xxx", "xxx", "xxx",
 				'x', peaceIngot
 				);
-		
 		GameRegistry.addRecipe(new ItemStack(peaceHelmet), 
 				"xxx", "x x",
 				'x', peaceIngot
 				);
-		
 		GameRegistry.addRecipe(new ItemStack(peaceChest), 
 				"x x", "xxx", "xxx",
 				'x', peaceIngot
 				);
-		
 		GameRegistry.addRecipe(new ItemStack(peaceLeggings), 
 				"xxx", "x x", "x x",
 				'x', peaceIngot
 				);
-		
 		GameRegistry.addRecipe(new ItemStack(peaceBoots), 
 				"   ", "x x", "x x",
 				'x', peaceIngot
 				);
+		GameRegistry.addShapelessRecipe(new ItemStack(flaxSeeds, 4), new ItemStack(flaxStraw));
+		
+		// flax recipes
+		GameRegistry.addRecipe(new ItemStack(flaxBread), 
+				"   ", "   ", "xyx",
+				'x', new ItemStack(Item.wheat),
+				'y', flaxStraw
+				);
+
 	}
 
 

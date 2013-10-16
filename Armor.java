@@ -13,7 +13,21 @@ public class Armor extends ItemArmor{
 
 	private String texturePath = PeaceInfo.ID + ":";
 	private String iconPath = PeaceInfo.ID + ":";
-	
+
+	/**
+	 * material parameters:
+	 * 1. int - maximum damage factor before armor piece breaks
+	 * 2. int[] - damage reduction array (each 1 point is half a shield on GUI) of each piece of armor
+	 * 3. int - enchantability factor of the material 
+	 * 
+	 * references:
+	 * 
+     * CLOTH(5, new int[]{1, 3, 2, 1}, 15),
+     * CHAIN(15, new int[]{2, 5, 4, 1}, 12),
+     * IRON(15, new int[]{2, 6, 5, 2}, 9),
+     * GOLD(7, new int[]{2, 5, 3, 1}, 25),
+     * DIAMOND(33, new int[]{3, 8, 6, 3}, 10);
+    */	
 	public Armor(int par1, EnumArmorMaterial par2EnumArmorMaterial, int par3,
 			int par4, String type) {
 		super(par1, par2EnumArmorMaterial, par3, par4);
