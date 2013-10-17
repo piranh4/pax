@@ -29,13 +29,15 @@ public class PeaceInfo
 			public static final String PEACE_BLOCK_NAME = "peaceBlock";
 			public static final String PEACE_ORE_BLOCK = "Peace Ore";	
 			public static final String PEACE_ORE_BLOCK_NAME = "peaceOre";		
+			public static final String FLAX_CROP = "Flax";	
+			public static final String FLAX_CROP_NAME = "flaxCrop";		
 		}
 		
 		public static class ITEMS {
 			public static final String PEACE_INGOT = "Peace Ingot";
 			public static final String PEACE_INGOT_NAME = "peaceIngot";	
 			public static final String FLAX = "Flax";
-			public static final String FLAX_NAME = "flaxCrop";		
+			public static final String FLAX_NAME = "flaxStraw";		
 
 		}
 		

@@ -8,6 +8,7 @@ public class PeacePickaxe extends ItemPickaxe {
 
 	public PeacePickaxe(int itemID, EnumToolMaterial toolMaterial) {
 		super(itemID, toolMaterial);
+
 		setMaxStackSize(1);
 		setCreativeTab(CreativeTabs.tabTools);
 		setUnlocalizedName("peacePickaxe");

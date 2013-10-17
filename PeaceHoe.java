@@ -8,6 +8,7 @@ public class PeaceHoe extends ItemHoe {
 
 	public PeaceHoe(int itemID, EnumToolMaterial toolMaterial) {
 		super(itemID, toolMaterial);
+
 		setMaxStackSize(1);
 		setCreativeTab(CreativeTabs.tabTools);
 		setUnlocalizedName("peaceHoe");

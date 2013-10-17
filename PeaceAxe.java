@@ -8,6 +8,7 @@ public class PeaceAxe extends ItemAxe {
 
 	public PeaceAxe(int itemID, EnumToolMaterial toolMaterial) {
 		super(itemID, toolMaterial);
+
 		setMaxStackSize(1);
 		setCreativeTab(CreativeTabs.tabTools);
 		setUnlocalizedName("peaceAxe");

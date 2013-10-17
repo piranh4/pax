@@ -44,7 +44,7 @@ public class Peace {
 	int peaceBlockID;
 	int peaceOreID;
 	int peaceIngotID;
-	static int flaxCropID;
+	int flaxCropID;
 	
 	// armor IDs
 	int peaceHelmetID;
@@ -67,7 +67,7 @@ public class Peace {
 	// blocks
 	public static Block peaceBlock;
 	public static Block peaceOre;
-	public static Block flaxCrop = new FlaxCrop(flaxCropID);
+	public static Block flaxCrop;
 	
 	// items
 	public static Item peaceIngot;
@@ -115,6 +115,7 @@ public class Peace {
 	@Instance(PeaceInfo.ID)
     public static Peace instance;
    
+	// telling forge what main classes to use to access functions on the client or server side
     @SidedProxy(clientSide=PeaceInfo.CLIENTPROXY + "ClientProxy", serverSide=PeaceInfo.COMMONPROXY + "CommonProxy")
     public static CommonProxy proxy;
    
@@ -134,13 +135,17 @@ public class Peace {
     //
     // warning!  if some other mod acts on those, things may not work!
     //
-	EventManager manager = new EventManager();
+	// EventManager manager = new EventManager();
 
 	@EventHandler
 	public void load(FMLInitializationEvent event) 
 	{
-		MinecraftForge.EVENT_BUS.register(manager);
-	
+	//	MinecraftForge.EVENT_BUS.register(manager);
+
+		//
+		// peace ore generation
+		//
+		//  GameRegistry.registerWorldGenerator(new WorldGeneratorPeace());
      }
             
     @EventHandler
@@ -193,22 +198,23 @@ public class Peace {
 			config.save();
 		}
 	}
-	
+
 	private void InitializeAssets()
 	{
 		// initialize blocks and item stacks
 		this.peaceBlock = new PeaceBlock(peaceBlockID, Material.rock);
 		this.peaceOre = new PeaceOre(peaceOreID);
+		this.flaxCrop = new FlaxCrop(flaxCropID);
 		
 		// initialize items
 		this.peaceIngot = new PeaceIngot(peaceIngotID);
-		this.flaxSeeds = new ItemSeeds(flaxSeedID, flaxCrop.blockID, Block.tilledField.blockID)
+		this.flaxSeeds = new ItemSeeds(flaxSeedID, flaxCropID, Block.tilledField.blockID)
 			.setUnlocalizedName("flaxSeeds")    
 			.setTextureName(PeaceInfo.ID + ":seeds_flax");
     	this.flaxStraw = new Item(flaxStrawID)    
 			.setUnlocalizedName("flaxStraw")    
 			.setTextureName(PeaceInfo.ID + ":flax_straw");
-    	this.flaxBread = new Item(flaxBreadID)
+ /*   	this.flaxBread = new Item(flaxBreadID)
 			.setUnlocalizedName("flaxBread")    
 			.setTextureName(PeaceInfo.ID + ":flax_bread");
 		this.paintRed = new Item(5004)
@@ -216,7 +222,7 @@ public class Peace {
 			.setCreativeTab(CreativeTabs.tabMisc)
 			.setUnlocalizedName("paintRed")
 			.setTextureName(PeaceInfo.ID.toLowerCase() + ":bucket_paint_red");
-
+*/
 		// initialize tools
 		this.peaceAxe = new PeaceAxe(peaceAxeID, peaceTools);
 		this.peaceShovel = new PeaceShovel(peaceShovelID, peaceTools);
@@ -225,10 +231,11 @@ public class Peace {
 		this.peaceSword = new PeaceSword(peaceSwordID, peaceTools);
 		
 		// initialize our armor
-		peaceHelmet = new Armor(peaceHelmetID, peaceArmor, 0, 0, PeaceInfo.ARMOR.PEACE_TYPE);
-		peaceChest = new Armor(peaceChestID, peaceArmor, 0, 1, PeaceInfo.ARMOR.PEACE_TYPE);
-		peaceLeggings = new Armor(peaceLeggingsID, peaceArmor, 0, 2, PeaceInfo.ARMOR.PEACE_TYPE);
-		peaceBoots = new Armor(peaceBootsID, peaceArmor, 0, 3, PeaceInfo.ARMOR.PEACE_TYPE);
+		peaceHelmet = new PeaceArmor(peaceHelmetID, peaceArmor, 0, 0, PeaceInfo.ARMOR.PEACE_TYPE);
+		peaceChest = new PeaceArmor(peaceChestID, peaceArmor, 0, 1, PeaceInfo.ARMOR.PEACE_TYPE);
+		peaceLeggings = new PeaceArmor(peaceLeggingsID, peaceArmor, 0, 2, PeaceInfo.ARMOR.PEACE_TYPE);
+		peaceBoots = new PeaceArmor(peaceBootsID, peaceArmor, 0, 3, PeaceInfo.ARMOR.PEACE_TYPE);
+		
 	}
 	
 	private void SetupLanguageRegistry()
@@ -246,7 +253,7 @@ public class Peace {
 		LanguageRegistry.addName(peaceHoe, PeaceInfo.TOOLS.PEACE_HOE);
 		LanguageRegistry.addName(peaceSword, PeaceInfo.TOOLS.PEACE_SWORD);
         LanguageRegistry.addName(flaxSeeds, "Flax Seeds");
-        LanguageRegistry.addName(flaxStraw, "Flax");
+        LanguageRegistry.addName(flaxStraw, "Flax Straw");
 	}
 	
 	private void MinecraftForgeSetup()
@@ -260,7 +267,7 @@ public class Peace {
 	{
 		GameRegistry.registerBlock(peaceBlock, PeaceInfo.BLOCKS.PEACE_BLOCK_NAME);
    	    GameRegistry.registerBlock(peaceOre, PeaceInfo.BLOCKS.PEACE_ORE_BLOCK_NAME);
-        GameRegistry.registerBlock(flaxCrop, "flaxCrop");
+        GameRegistry.registerBlock(flaxCrop, PeaceInfo.BLOCKS.FLAX_CROP_NAME);
 	}
 	
 	private void RegisterRecipes()
@@ -268,7 +275,7 @@ public class Peace {
         // char white wool into black
         GameRegistry.addSmelting(new ItemStack(Block.cloth, 2, 0).itemID, new ItemStack(Block.cloth, 1, 15), 0.2f);            //
         // make paint from milk and dye
-        GameRegistry.addShapelessRecipe(new ItemStack(paintRed, 1, 15), new ItemStack(Item.bucketMilk), new ItemStack(Item.dyePowder, 1, 1));
+    //    GameRegistry.addShapelessRecipe(new ItemStack(paintRed, 1, 15), new ItemStack(Item.bucketMilk), new ItemStack(Item.dyePowder, 1, 1));
         // melt bones into glue
         GameRegistry.addSmelting(new ItemStack(Item.bone).itemID, new ItemStack(Item.slimeBall), 0.1f);
         
@@ -322,13 +329,13 @@ public class Peace {
 		GameRegistry.addShapelessRecipe(new ItemStack(flaxSeeds, 4), new ItemStack(flaxStraw));
 		
 		// flax recipes
-		GameRegistry.addRecipe(new ItemStack(flaxBread), 
-				"   ", "   ", "xyx",
-				'x', new ItemStack(Item.wheat),
-				'y', flaxStraw
-				);
+	//	GameRegistry.addRecipe(new ItemStack(flaxBread), 
+	//			"   ", "   ", "xyx",
+	//			'x', new ItemStack(Item.wheat),
+	//			'y', flaxStraw
+	//			);
 
 	}
 
-
 }
+

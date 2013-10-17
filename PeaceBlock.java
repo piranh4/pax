@@ -7,8 +7,8 @@ import net.minecraft.creativetab.CreativeTabs;
 
 public class PeaceBlock extends Block {
 
-	public PeaceBlock(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public PeaceBlock(int blockID, Material par2Material) {
+		super(blockID, par2Material);
 		
 		this.setHardness(3.0F);
 		this.setStepSound(Block.soundStoneFootstep);
@@ -23,3 +23,4 @@ public class PeaceBlock extends Block {
 	}
 
 }
+
