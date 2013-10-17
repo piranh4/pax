@@ -30,7 +30,7 @@ public class FlaxCrop extends BlockCrops {
     }
 
 	//
-    // From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
+    // retrieves the block's initial texture. Args: side, metadata
     //
     public Icon getIcon(int side, int metadata)
     {
@@ -57,7 +57,7 @@ public class FlaxCrop extends BlockCrops {
 	@Override
 	protected int getCropItem()
     {
-        return Peace.flaxStraw.itemID;
+        return Peace.flaxFibre.itemID;
     }
 
 	

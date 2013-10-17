@@ -26,8 +26,8 @@ i need ways to get/make
 - slime balls 
 	glue from smelting bones
 	slime blocks in swamps
-	snails (new mob) could drop them
-	cook okra (new plant)
+	snails (new mob as in mo' creatures) could drop them
+	cook okra (new plant)(only kidding)
 
 - fish
 
@@ -43,7 +43,7 @@ i need ways to get/make
 	wuppy uses a blaze tree, which i rather like
 
 - ghast tears
-	diamond surrounded by nether rack or vice versa
+	diamond surrounded by nether rack or vice versa (rra)
 	wuppy's ore that drops a tear when lava is directly next to it while mined
 
 - spider eyes
@@ -53,6 +53,7 @@ i need ways to get/make
 	wolves who kill animals, that drop meat which turns rotten just before despawning
 	from bad oysters that don't give ender pearls
 	"old" animals drop it when despawning
+	craft from dung and steak/pork/chicken (or cook in cauldron)
 
 - dragon's egg
 - nether star
@@ -86,26 +87,38 @@ i'd like it to be possible to play in peaceful mode entirely without killing eve
 	you could shear chickens
 	chickens could drop them when killed by wolves
 
-if we want sturdier cloth, we need:
+the amazing flax usability tree:
+if we want sturdier cloth, we need
 	flax seeds
+		very occasionally drop from tall grass like wheat
+		drop from tall grass when using a hoe
+			the quality of the hoe affects the drop rate
 from which we grow
-	flax
+	flax (crop)
+		grows like wheat (8 stages)
 which we harvest as
 	flax seeds
-	flax straw
+	flax straw or fibre
 recipes:
 	flax straw + sticks = linen fibre
+	     or drop linen fibre straight from harvesting flax plants
+	     (do we actually need the flax straw for anything? don't think so.)
 	4 linen fibre = linen block
 	sticks + linen = item frame
 	wooden planks + linen = bed
 	linen can be shaped into "armor" like leather, with very little extra protection
 	flax seeds + wheat = whole grain bread (cures more hunger)
+	flax seeds x 4 = linseed oil
+		should we boil linseed oil before using it in paint?  would be more realistic.
+ 	with linseed oil we could make a lantern
+		"gfg" "gog" "gsg"
+		g = glass, o = linseed oil, f = fire (or coal), s = stick
 	linen + dye = coloured cloth
 	linen can be shaped into wall covering (like carpet only for walls)
 
 paint
-	milk + dye
-	blocks that can be painted:  wood, stone
+	milk + dye + linseed oil
+	blocks that can be painted:  wood, stone, any others?
 
 paint brush
 	sticks + animal bristle
@@ -114,17 +127,20 @@ alter some minecraft issues that i see as suboptimal:
 - saddle recipe
 - lots of things should be paintable/dyeable
 - most every solid block should have half slabs and stairs to increase building potential
-- introduce quarter and eighth blocks
-- introduce facades/wall coverings
+- introduce quarter and eighth blocks (and a handsaw to saw them)
+- introduce facades/siding/wall covering
 - lots more things should provide fuel
 - some crafted blocks should come apart again (with some loss)
 - more doors (more materials, and iron bar door, reed door, linen curtain (walk through even if closed?)
-- fertilizer should work more gradually (ideally time-based so stuff grows even when the player is out of chunk, otherwise it should just grow a plant by one stage further) -- umm. how about trees?
+- fertilizer should work more gradually (ideally time-based so stuff grows even when the player is 	out of chunk, otherwise it should just grow a plant by one stage further -- ha.  as it 		turns out, minecraft now sorta works this way.  good.)
+  -- umm. how about trees?
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
 - torches should be made from sticks lit on fire, not from coal (torches should also not be permanent, but if i remove that, i need to introduce a lantern. or wait, we have jack-o-lanterns.)
 - spawn nether portals in ravines
-- leave books in villages that tell stories -- about nether portals, strongholds, mines, mooshrooms, desert and jungle temples, so people know there is stuff to look for.
+- leave books in villages that tell stories -- about nether portals, strongholds, mines, 		mooshrooms, desert and jungle temples, so people know there is stuff to look for.
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
+- use the cauldron for something, like cooking multi-item foods
+- make reeds usable similarly to iron bars (wicker/bamboo panels)
 
-
+ 

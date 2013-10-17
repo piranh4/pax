@@ -17,6 +17,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
@@ -61,8 +62,10 @@ public class Peace {
 	
 	// item IDs
 	static int flaxSeedID;
-	static int flaxStrawID;
+	static int flaxFibreID;
 	static int flaxBreadID;
+	static int linseedOilID;
+	static int paintRedID;
 	
 	// blocks
 	public static Block peaceBlock;
@@ -72,8 +75,10 @@ public class Peace {
 	// items
 	public static Item peaceIngot;
 	public static Item flaxSeeds;
-    public static Item flaxStraw;
+    public static Item flaxFibre;
     public static Item flaxBread;
+
+    public static Item linseedOil;
 	public static Item paintRed;
 
 	// armor
@@ -183,10 +188,11 @@ public class Peace {
 			peaceBootsID = config.get("Armor IDs", "Peace Boots ID", 1011).getInt();
 			
 			flaxSeedID = config.get("Item IDs", "Flax Seed ID", 1012).getInt();
-			flaxStrawID = config.get("Item IDs", "Flax Straw ID", 1013).getInt();
+			flaxFibreID = config.get("Item IDs", "Flax Fibre ID", 1013).getInt();
 			flaxBreadID = config.get("Item IDs", "Flax Bread ID", 1014).getInt();
 			flaxCropID = config.get("Item IDs", "Flax Crop ID", 1015).getInt();
-
+			linseedOilID = config.get("Item IDs", "Linseed Oil ID", 1016).getInt();
+			paintRedID = config.get("Item IDs", "Red Paint ID", 1017).getInt();
 
 		}
 		catch(Exception e)
@@ -205,24 +211,28 @@ public class Peace {
 		this.peaceBlock = new PeaceBlock(peaceBlockID, Material.rock);
 		this.peaceOre = new PeaceOre(peaceOreID);
 		this.flaxCrop = new FlaxCrop(flaxCropID);
+		this.paintRed = new Item(paintRedID)
+			.setMaxStackSize(1)
+			.setCreativeTab(CreativeTabs.tabMisc)
+			.setUnlocalizedName("paintRed")
+			.setTextureName(PeaceInfo.ID + ":bucket_paint_red");
 		
 		// initialize items
 		this.peaceIngot = new PeaceIngot(peaceIngotID);
 		this.flaxSeeds = new ItemSeeds(flaxSeedID, flaxCropID, Block.tilledField.blockID)
 			.setUnlocalizedName("flaxSeeds")    
 			.setTextureName(PeaceInfo.ID + ":seeds_flax");
-    	this.flaxStraw = new Item(flaxStrawID)    
-			.setUnlocalizedName("flaxStraw")    
-			.setTextureName(PeaceInfo.ID + ":flax_straw");
- /*   	this.flaxBread = new Item(flaxBreadID)
+    	this.flaxFibre = new Item(flaxFibreID)    
+			.setUnlocalizedName("flaxFibre")    
+			.setTextureName(PeaceInfo.ID + ":flax_fibre");
+    	this.linseedOil = new Item(linseedOilID)
+			.setUnlocalizedName("linseedOil")    
+			.setTextureName(PeaceInfo.ID + ":linseed_oil");
+    	// ItemFood params:  item use duration, heal amount, saturation modifier (???), is this wolf's favourite food
+    	this.flaxBread = (new ItemFood(41, 7, 0.6F, false))
 			.setUnlocalizedName("flaxBread")    
 			.setTextureName(PeaceInfo.ID + ":flax_bread");
-		this.paintRed = new Item(5004)
-			.setMaxStackSize(1)
-			.setCreativeTab(CreativeTabs.tabMisc)
-			.setUnlocalizedName("paintRed")
-			.setTextureName(PeaceInfo.ID.toLowerCase() + ":bucket_paint_red");
-*/
+
 		// initialize tools
 		this.peaceAxe = new PeaceAxe(peaceAxeID, peaceTools);
 		this.peaceShovel = new PeaceShovel(peaceShovelID, peaceTools);
@@ -253,7 +263,10 @@ public class Peace {
 		LanguageRegistry.addName(peaceHoe, PeaceInfo.TOOLS.PEACE_HOE);
 		LanguageRegistry.addName(peaceSword, PeaceInfo.TOOLS.PEACE_SWORD);
         LanguageRegistry.addName(flaxSeeds, "Flax Seeds");
-        LanguageRegistry.addName(flaxStraw, "Flax Straw");
+        LanguageRegistry.addName(flaxFibre, "Flax Fibre");
+        LanguageRegistry.addName(flaxBread, "Flax Bread");
+        LanguageRegistry.addName(linseedOil, "Linseed Oil");
+        LanguageRegistry.addName(paintRed, "Red Paint");
 	}
 	
 	private void MinecraftForgeSetup()
@@ -274,8 +287,6 @@ public class Peace {
 	{
         // char white wool into black
         GameRegistry.addSmelting(new ItemStack(Block.cloth, 2, 0).itemID, new ItemStack(Block.cloth, 1, 15), 0.2f);            //
-        // make paint from milk and dye
-    //    GameRegistry.addShapelessRecipe(new ItemStack(paintRed, 1, 15), new ItemStack(Item.bucketMilk), new ItemStack(Item.dyePowder, 1, 1));
         // melt bones into glue
         GameRegistry.addSmelting(new ItemStack(Item.bone).itemID, new ItemStack(Item.slimeBall), 0.1f);
         
@@ -284,56 +295,53 @@ public class Peace {
 		GameRegistry.addRecipe(new ItemStack(peacePickaxe), 
 				"xxx", " y ", " y ",
 				'x', peaceIngot,
-				'y', new ItemStack(Item.stick)
-				);
+				'y', new ItemStack(Item.stick) );
 		GameRegistry.addRecipe(new ItemStack(peaceAxe), 
 				"xx ", "xy ", " y ",
 				'x', peaceIngot,
-				'y', new ItemStack(Item.stick)
-				);
+				'y', new ItemStack(Item.stick) );
 		GameRegistry.addRecipe(new ItemStack(peaceShovel), 
 				" x ", " y ", " y ",
 				'x', peaceIngot,
-				'y', new ItemStack(Item.stick)
-				);
+				'y', new ItemStack(Item.stick) );
 		GameRegistry.addRecipe(new ItemStack(peaceHoe), 
 				"xx ", " y ", " y ",
 				'x', peaceIngot,
-				'y', new ItemStack(Item.stick)
-				);
+				'y', new ItemStack(Item.stick) );
 		GameRegistry.addRecipe(new ItemStack(peaceSword), 
 				" x ", " x ", " y ",
 				'x', peaceIngot,
-				'y', new ItemStack(Item.stick)
-				);
+				'y', new ItemStack(Item.stick) );
 		GameRegistry.addRecipe(new ItemStack(peaceBlock), 
 				"xxx", "xxx", "xxx",
-				'x', peaceIngot
-				);
+				'x', peaceIngot );
+		// make special peace armor pieces
 		GameRegistry.addRecipe(new ItemStack(peaceHelmet), 
 				"xxx", "x x",
-				'x', peaceIngot
-				);
+				'x', peaceIngot );
 		GameRegistry.addRecipe(new ItemStack(peaceChest), 
 				"x x", "xxx", "xxx",
-				'x', peaceIngot
-				);
+				'x', peaceIngot );
 		GameRegistry.addRecipe(new ItemStack(peaceLeggings), 
 				"xxx", "x x", "x x",
-				'x', peaceIngot
-				);
+				'x', peaceIngot );
 		GameRegistry.addRecipe(new ItemStack(peaceBoots), 
 				"   ", "x x", "x x",
-				'x', peaceIngot
-				);
-		GameRegistry.addShapelessRecipe(new ItemStack(flaxSeeds, 4), new ItemStack(flaxStraw));
-		
-		// flax recipes
-	//	GameRegistry.addRecipe(new ItemStack(flaxBread), 
-	//			"   ", "   ", "xyx",
-	//			'x', new ItemStack(Item.wheat),
-	//			'y', flaxStraw
-	//			);
+				'x', peaceIngot );
+		// flax seeds get pressed into linseed oil
+		GameRegistry.addRecipe(new ItemStack(linseedOil), 
+				"xx", "xx",
+				'x', flaxSeeds );
+        // make paint from milk, linseed oil, and dye
+	    GameRegistry.addShapelessRecipe(new ItemStack(paintRed, 1, 15), 
+	    		new ItemStack(Item.bucketMilk),
+	    		new ItemStack(linseedOil),
+	    		new ItemStack(Item.dyePowder, 1, 1));
+		// a heartier bread (restores more than wheat bread)
+	    GameRegistry.addRecipe(new ItemStack(flaxBread), 
+				"   ", "   ", "xyx",
+				'x', new ItemStack(Item.wheat),
+				'y', flaxSeeds );
 
 	}
 
