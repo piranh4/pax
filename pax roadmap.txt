@@ -124,7 +124,9 @@ paint brush
 	sticks + animal bristle
 	
 alter some minecraft issues that i see as suboptimal:
-- saddle recipe
+- be able to gets straight fire
+- saddle recipe (leather and iron)
+- mossy cobblestone recipe (vines and cobble)
 - lots of things should be paintable/dyeable
 - most every solid block should have half slabs and stairs to increase building potential
 - introduce quarter and eighth blocks (and a handsaw to saw them)
@@ -142,5 +144,13 @@ alter some minecraft issues that i see as suboptimal:
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
 - use the cauldron for something, like cooking multi-item foods
 - make reeds usable similarly to iron bars (wicker/bamboo panels)
+- create columns from stone and wooden planks
+- movement should be much more sensitive to the type of ground the player is on
+	sand slows you down, smooth stone speeds you up, for example
+- dyed sheep should not pass on the colour to their offspring
+	quite possibly the dye should not survive shearing either
+	but maybe we could have mutations so very rarely a funky-coloured sheep is born
+
+
 
  
