@@ -12,11 +12,16 @@ import java.io.File;
 import java.util.logging.Level;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockColored;
+import net.minecraft.block.BlockTorch;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemCloth;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSeeds;
@@ -46,6 +51,9 @@ public class Peace {
 	int peaceOreID;
 	int peaceIngotID;
 	int flaxCropID;
+	int linenBlockID;
+	int oilLanternID;
+//	int metaBlockID;
 	
 	// armor IDs
 	int peaceHelmetID;
@@ -66,11 +74,15 @@ public class Peace {
 	static int flaxBreadID;
 	static int linseedOilID;
 	static int paintRedID;
+//	static int metaBlockItemID;
 	
 	// blocks
 	public static Block peaceBlock;
 	public static Block peaceOre;
 	public static Block flaxCrop;
+	public static Block linenBlock;
+	public static BlockTorch oilLantern;
+//	public static Block metaBlock;
 	
 	// items
 	public static Item peaceIngot;
@@ -80,6 +92,7 @@ public class Peace {
 
     public static Item linseedOil;
 	public static Item paintRed;
+//	public static ItemBlock metaBlockItem;
 
 	// armor
 	public static Item peaceHelmet;
@@ -130,9 +143,9 @@ public class Peace {
     {
     		this.SetupConfiguration(event.getSuggestedConfigurationFile());
     		this.InitializeAssets();
-    		this.SetupLanguageRegistry();
     		this.MinecraftForgeSetup();
     		this.RegisterBlocks();
+    		this.SetupLanguageRegistry();
     		this.RegisterRecipes();	    
     }
     
@@ -171,29 +184,34 @@ public class Peace {
 		try
 		{
 			config.load();		
-		
-			peaceBlockID = config.get("Block IDs", "Peace Block ID", 1000).getInt();
-			peaceOreID = config.get("Block IDs", "Peace Ore ID", 1001).getInt();
-			peaceIngotID = config.get("Item IDs", "Peace Ingot ID", 1002).getInt();
-	
-			peaceAxeID = config.get("Item IDs", "Peace Axe ID", 1003).getInt();
-			peaceShovelID = config.get("Item IDs", "Peace Shovel ID", 1004).getInt();
-			peacePickaxeID = config.get("Item IDs", "Peace Pickaxe ID", 1005).getInt();
-			peaceHoeID = config.get("Item IDs", "Peace Hoe ID", 1006).getInt();
-			peaceSwordID = config.get("Item IDs", "Peace Sword ID", 1007).getInt();
-		
-			peaceHelmetID = config.get("Armor IDs", "Peace Helmet ID", 1008).getInt();
-			peaceChestID = config.get("Armor IDs", "Peace Chest ID", 1009).getInt();
-			peaceLeggingsID = config.get("Armor IDs", "Peace Leggings ID", 1010).getInt();
-			peaceBootsID = config.get("Armor IDs", "Peace Boots ID", 1011).getInt();
-			
-			flaxSeedID = config.get("Item IDs", "Flax Seed ID", 1012).getInt();
-			flaxFibreID = config.get("Item IDs", "Flax Fibre ID", 1013).getInt();
-			flaxBreadID = config.get("Item IDs", "Flax Bread ID", 1014).getInt();
-			flaxCropID = config.get("Item IDs", "Flax Crop ID", 1015).getInt();
-			linseedOilID = config.get("Item IDs", "Linseed Oil ID", 1016).getInt();
-			paintRedID = config.get("Item IDs", "Red Paint ID", 1017).getInt();
+			//
+			// block IDs start at 500, Armor at 600, tools at 700, items at 800
+			//
+			peaceBlockID = config.get("Block IDs", "Peace Block ID", 500).getInt();
+			peaceOreID = config.get("Block IDs", "Peace Ore ID", 501).getInt();
+			flaxCropID = config.get("Item IDs", "Flax Crop ID", 503).getInt();
+//			metaBlockID = config.get("Item IDs", "Meta Block ID", 504).getInt();
 
+			peaceHelmetID = config.get("Armor IDs", "Peace Helmet ID", 600).getInt();
+			peaceChestID = config.get("Armor IDs", "Peace Chest ID", 601).getInt();
+			peaceLeggingsID = config.get("Armor IDs", "Peace Leggings ID", 602).getInt();
+			peaceBootsID = config.get("Armor IDs", "Peace Boots ID", 603).getInt();
+	
+			peaceAxeID = config.get("Tool IDs", "Peace Axe ID", 700).getInt();
+			peaceHoeID = config.get("Tool IDs", "Peace Hoe ID", 701).getInt();
+			peacePickaxeID = config.get("Tool IDs", "Peace Pickaxe ID", 702).getInt();
+			peaceShovelID = config.get("Tool IDs", "Peace Shovel ID", 703).getInt();
+			peaceSwordID = config.get("Tool IDs", "Peace Sword ID", 704).getInt();
+
+			peaceIngotID = config.get("Item IDs", "Peace Ingot ID", 800).getInt();
+			flaxSeedID = config.get("Item IDs", "Flax Seed ID", 801).getInt();
+			flaxFibreID = config.get("Item IDs", "Flax Fibre ID", 802).getInt();
+			flaxBreadID = config.get("Item IDs", "Flax Bread ID", 803).getInt();
+			linseedOilID = config.get("Item IDs", "Linseed Oil ID", 804).getInt();
+			paintRedID = config.get("Item IDs", "Red Paint ID", 805).getInt();
+			linenBlockID = config.get("Item IDs", "Linen Block ID", 806).getInt();
+//			metaBlockItemID = config.get("Item IDs", "Red Paint ID", 806).getInt();
+			oilLanternID = config.get("Item IDs", "Oil Lantern ID", 807).getInt();
 		}
 		catch(Exception e)
 		{
@@ -216,6 +234,15 @@ public class Peace {
 			.setCreativeTab(CreativeTabs.tabMisc)
 			.setUnlocalizedName("paintRed")
 			.setTextureName(PeaceInfo.ID + ":bucket_paint_red");
+		this.linenBlock = new Block(linenBlockID, Material.cloth)
+			.setUnlocalizedName("linenBlock")
+			.setCreativeTab(CreativeTabs.tabBlock)
+			.setTextureName(PeaceInfo.ID + ":linen");
+    	this.oilLantern = new OilLantern(oilLanternID);
+//		this.metaBlock = new MetaBlock(metaBlockID, Material.cloth);
+//			.setUnlocalizedName("_");
+//			.setTextureName(PeaceInfo.ID + ":linen_colored");
+//		this.metaBlockItem = new MetaBlockItem(metaBlockItemID);
 		
 		// initialize items
 		this.peaceIngot = new PeaceIngot(peaceIngotID);
@@ -224,15 +251,17 @@ public class Peace {
 			.setTextureName(PeaceInfo.ID + ":seeds_flax");
     	this.flaxFibre = new Item(flaxFibreID)    
 			.setUnlocalizedName("flaxFibre")    
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setTextureName(PeaceInfo.ID + ":flax_fibre");
     	this.linseedOil = new Item(linseedOilID)
 			.setUnlocalizedName("linseedOil")    
+			.setCreativeTab(CreativeTabs.tabMaterials)
 			.setTextureName(PeaceInfo.ID + ":linseed_oil");
     	// ItemFood params:  item use duration, heal amount, saturation modifier (???), is this wolf's favourite food
-    	this.flaxBread = (new ItemFood(41, 7, 0.6F, false))
+    	this.flaxBread = (new ItemFood(flaxBreadID, 7, 0.6F, false))
 			.setUnlocalizedName("flaxBread")    
 			.setTextureName(PeaceInfo.ID + ":flax_bread");
-
+    	
 		// initialize tools
 		this.peaceAxe = new PeaceAxe(peaceAxeID, peaceTools);
 		this.peaceShovel = new PeaceShovel(peaceShovelID, peaceTools);
@@ -240,7 +269,7 @@ public class Peace {
 		this.peaceHoe = new PeaceHoe(peaceHoeID, peaceTools);
 		this.peaceSword = new PeaceSword(peaceSwordID, peaceTools);
 		
-		// initialize our armor
+		// initialize armor
 		peaceHelmet = new PeaceArmor(peaceHelmetID, peaceArmor, 0, 0, PeaceInfo.ARMOR.PEACE_TYPE);
 		peaceChest = new PeaceArmor(peaceChestID, peaceArmor, 0, 1, PeaceInfo.ARMOR.PEACE_TYPE);
 		peaceLeggings = new PeaceArmor(peaceLeggingsID, peaceArmor, 0, 2, PeaceInfo.ARMOR.PEACE_TYPE);
@@ -267,6 +296,15 @@ public class Peace {
         LanguageRegistry.addName(flaxBread, "Flax Bread");
         LanguageRegistry.addName(linseedOil, "Linseed Oil");
         LanguageRegistry.addName(paintRed, "Red Paint");
+        LanguageRegistry.addName(linenBlock, "Linen");
+        LanguageRegistry.addName(oilLantern, "Oil Lantern");
+//        for(int i = 0; i < 16; i++) {
+//        	LanguageRegistry.addName(new ItemStack(metaBlockItemID, 1, i), 
+//        			ItemDye.dyeItemNames[i] +
+//        			" " +
+//           			PeaceInfo.BLOCKS.LINEN_BLOCK
+//        			);
+//        }
 	}
 	
 	private void MinecraftForgeSetup()
@@ -281,7 +319,10 @@ public class Peace {
 		GameRegistry.registerBlock(peaceBlock, PeaceInfo.BLOCKS.PEACE_BLOCK_NAME);
    	    GameRegistry.registerBlock(peaceOre, PeaceInfo.BLOCKS.PEACE_ORE_BLOCK_NAME);
         GameRegistry.registerBlock(flaxCrop, PeaceInfo.BLOCKS.FLAX_CROP_NAME);
-	}
+        GameRegistry.registerBlock(linenBlock, PeaceInfo.BLOCKS.LINEN_BLOCK_NAME);
+        GameRegistry.registerBlock(oilLantern, PeaceInfo.BLOCKS.OIL_LANTERN_NAME);
+//        GameRegistry.registerBlock(metaBlock, MetaBlockItem.class, PeaceInfo.ID + (metaBlock.getUnlocalizedName().substring(5)));
+    }
 	
 	private void RegisterRecipes()
 	{
@@ -342,7 +383,27 @@ public class Peace {
 				"   ", "   ", "xyx",
 				'x', new ItemStack(Item.wheat),
 				'y', flaxSeeds );
-
+		// linen fibre creates linen block
+		GameRegistry.addRecipe(new ItemStack(linenBlock), 
+				"xx", "xx",
+				'x', flaxFibre );
+		GameRegistry.addRecipe(new ItemStack(oilLantern), 
+				"gfg", "gog", "gsg",
+				'g', new ItemStack(Block.glass),
+				'f', new ItemStack(Item.coal),
+				'o', new ItemStack(linseedOil),
+				's', new ItemStack(Item.stick) );
+		GameRegistry.addRecipe(new ItemStack(Item.bed),
+				// this only currently works with oak planks; find out why
+				"   ", "lll", "ppp",
+				'l', new ItemStack(linenBlock),
+				'p', new ItemStack(Block.planks) );
+		GameRegistry.addRecipe(new ItemStack(Item.itemFrame),
+				"sss", "sls", "sss",
+				'l', new ItemStack(linenBlock),
+				's', new ItemStack(Item.stick) );
+				
+		
 	}
 
 }

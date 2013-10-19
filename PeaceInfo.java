@@ -31,6 +31,10 @@ public class PeaceInfo
 			public static final String PEACE_ORE_BLOCK_NAME = "peaceOre";		
 			public static final String FLAX_CROP = "Flax";	
 			public static final String FLAX_CROP_NAME = "flaxCrop";		
+			public static final String LINEN_BLOCK = "Linen";	
+			public static final String LINEN_BLOCK_NAME = "linenBlock";		
+			public static final String OIL_LANTERN = "Oil Lantern";	
+			public static final String OIL_LANTERN_NAME = "oilLantern";		
 		}
 		
 		public static class ITEMS {
