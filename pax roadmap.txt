@@ -21,10 +21,11 @@ i need ways to get/make
 	animals could drop them upon despawning
 	wolves could kill other animals in addition to chickens
 	we could find middens near villages, or at the confluence of river and ocean
+		other cool stuff could be in middens (flower pots, used tools, feathers…)
 	digging in dirt could occasionally yield random bones
 
 - slime balls 
-	glue from smelting bones
+DONE	glue from smelting bones
 	slime blocks in swamps
 	snails (new mob as in mo' creatures) could drop them
 	cook okra (new plant)(only kidding)
@@ -63,68 +64,72 @@ i need ways to get/make
 i'd like it to be possible to play in peaceful mode entirely without killing even animals = the vegetarian option.  not a necessity, mind, but a possibility.
 - another fertilizer instead of bonemeal
 	fertlizer is basically nitrogen (N) + phosphorus (P) + potash (K)
-		find those as natural compounds?
+		find those as natural compounds?  what else can we do with them?
 	could use silverfish stone to drop … calcium carbonate ?
 	ammonia/urea
 	compost
 	nitrate ore (also useful for gun powder)
-	grow kelp
+	kelp
 	oyster shells
 	animals drop dung (oh yeah, i like this one)
 - sturdier cloth instead of leather 
 	introduce linen
 - something to drop slimeballs
-	snails
 	is cooking found bones offensive to vegetarians?  not this one. 
 - shear fur to get animal bristle from pigs, horses, cows
 - black ink
 	soot and glue (originally animal glue, *sigh* -- could use pine resin instead
 	iron and citric acid (apple?)
+	walnut or acorns (ACORNS!  oak trees should drop these instead of apples)
 - use milk to tame ocelots
 	can we make cheese?
 - feathers 
 	chickens could drop those like they drop eggs
 	you could shear chickens
 	chickens could drop them when killed by wolves
+		isn't that what happens now, or am i confusing it with a mod?
 
 the amazing flax usability tree:
 if we want sturdier cloth, we need
-	flax seeds
-		very occasionally drop from tall grass like wheat
+DONE	flax seeds
+DONE		very occasionally drop from tall grass like wheat
 		drop from tall grass when using a hoe
 			the quality of the hoe affects the drop rate
 from which we grow
-	flax (crop)
-		grows like wheat (8 stages)
+DONE	flax (crop)
+DONE		grows like wheat (8 stages)
 which we harvest as
-	flax seeds
-	flax straw or fibre
+DONE	flax seeds
+DONE	flax straw or fibre
 recipes:
 	flax straw + sticks = linen fibre
-	     or drop linen fibre straight from harvesting flax plants
-	     (do we actually need the flax straw for anything? don't think so.)
-	4 linen fibre = linen block
-	sticks + linen = item frame
-	wooden planks + linen = bed
+DONE	     or drop linen fibre straight from harvesting flax plants
+NO	     (do we actually need the flax straw for anything? don't think so.)
+DONE	4 linen fibre = linen block
+DONE	sticks + linen = item frame
+DONE	wooden planks + linen = bed
 	linen can be shaped into "armor" like leather, with very little extra protection
-	flax seeds + wheat = whole grain bread (cures more hunger)
+DONE	flax seeds + wheat = whole grain bread (cures more hunger)
 	flax seeds x 4 = linseed oil
-		should we boil linseed oil before using it in paint?  would be more realistic.
- 	with linseed oil we could make a lantern
-		"gfg" "gog" "gsg"
-		g = glass, o = linseed oil, f = fire (or coal), s = stick
+NO		should we boil linseed oil before using it in paint?  would be more realistic.
+DONE 	with linseed oil we could make a lantern
 	linen + dye = coloured cloth
 	linen can be shaped into wall covering (like carpet only for walls)
 
 paint
-	milk + dye + linseed oil
+PROTO	milk + dye + linseed oil
 	blocks that can be painted:  wood, stone, any others?
 
 paint brush
 	sticks + animal bristle
 	
 alter some minecraft issues that i see as suboptimal:
-- be able to gets straight fire
+- be able to make straight fire 
+  -- two sticks make a fire starter, fire starter and logs make fire
+     (that duplicates flint and steel, but we can make it a single-use item)
+- make torches from sticks and said fire, and have them be temporary (tick handler) 
+  -- if you carry one in your hand, it lights up your surroundings
+  -- permanent light fixtures would be linseed oil lanterns, for example
 - saddle recipe (leather and iron)
 - mossy cobblestone recipe (vines and cobble)
 - lots of things should be paintable/dyeable
@@ -133,24 +138,28 @@ alter some minecraft issues that i see as suboptimal:
 - introduce facades/siding/wall covering
 - lots more things should provide fuel
 - some crafted blocks should come apart again (with some loss)
-- more doors (more materials, and iron bar door, reed door, linen curtain (walk through even if closed?)
-- fertilizer should work more gradually (ideally time-based so stuff grows even when the player is 	out of chunk, otherwise it should just grow a plant by one stage further -- ha.  as it 		turns out, minecraft now sorta works this way.  good.)
+- more doors 
+  -- more materials, and iron bar door, reed door, linen curtain (walk through even if closed?)
   -- umm. how about trees?
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
-- torches should be made from sticks lit on fire, not from coal (torches should also not be permanent, but if i remove that, i need to introduce a lantern. or wait, we have jack-o-lanterns.)
 - spawn nether portals in ravines
-- leave books in villages that tell stories -- about nether portals, strongholds, mines, 		mooshrooms, desert and jungle temples, so people know there is stuff to look for.
+- leave books in chests in village libraries that tell stories -- about nether portals, 	strongholds, mines, mooshrooms, desert and jungle temples, so people know there is stuff to look for.
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
 - use the cauldron for something, like cooking multi-item foods
+  -- it would be cool if one then needed to point an inventory item (like a bowl or bottle) at the cauldron to get the cooked stuff out.
+  -- we'd need fire under the cauldron (see straight fire)
 - make reeds usable similarly to iron bars (wicker/bamboo panels)
-- create columns from stone and wooden planks
+- create columns from stone, and wooden planks
 - movement should be much more sensitive to the type of ground the player is on
-	sand slows you down, smooth stone speeds you up, for example
+  -- sand slows you down, smooth stone speeds you up, for example
 - dyed sheep should not pass on the colour to their offspring
-	quite possibly the dye should not survive shearing either
-	but maybe we could have mutations so very rarely a funky-coloured sheep is born
-
+  -- quite possibly the dye should not survive shearing either
+  -- but maybe we could have mutations so very rarely a funky-coloured sheep is born
+- animals should eat your cultivated crops, depending on kind (pigs eat everything, of course)
+  -- eating the crop should un-till the land
+- have fruit trees instead of apples dropping from oaks
+- the minecraft diet is not very healthy; no leafy green vegetables at all. ;)
 
 
  
