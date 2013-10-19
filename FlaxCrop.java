@@ -32,8 +32,7 @@ public class FlaxCrop extends BlockCrops {
 	//
     // retrieves the block's initial texture. Args: side, metadata
     //
-	@Override
-	public Icon getIcon(int side, int metadata)
+    public Icon getIcon(int side, int metadata)
     {
         if (metadata < 0 || metadata > 7)
         {
