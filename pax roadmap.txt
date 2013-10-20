@@ -25,6 +25,7 @@ i need ways to get/make
 	we could find middens near villages, or at the confluence of river and ocean
 		other cool stuff could be in middens (flower pots, used tools, feathers…)
 	digging in dirt could occasionally yield random bones
+	fossil ore?  those would be petrified bones, *snicker*.
 
 - slime balls 
 DONE	glue from smelting bones
@@ -32,7 +33,7 @@ DONE	glue from smelting bones
 	snails (new mob as in mo' creatures) could drop them
 	cook okra (new plant)(only kidding)
 
-- fish
+- fish (why did i put this here?)
 
 - gun powder
 	nitrate and sulphur ores
@@ -61,7 +62,9 @@ DONE	glue from smelting bones
 - dragon's egg
 - nether star
 - monster spawner
+  -- this is only here cause rra wants to build with it. i basically think that since you can get it from dungeons with silk touch that we shouldn't do anything special.
 - heads (skeleton, wither skeleton, zombie, Steve, creeper)
+  -- find them in middens
 
 i'd like it to be possible to play in peaceful mode entirely without killing even animals = the vegetarian option.  not a necessity, mind, but a possibility.
 - another fertilizer instead of bonemeal
@@ -80,10 +83,10 @@ i'd like it to be possible to play in peaceful mode entirely without killing eve
 	is cooking found bones offensive to vegetarians?  not this one. 
 - shear fur to get animal bristle from pigs, horses, cows
 - black ink
-	soot and glue (originally animal glue, *sigh* -- could use pine resin instead
+	soot (coal) and glue (originally animal glue, *sigh* -- could use pine resin instead, or slimeballs
 	iron and citric acid (apple?)
 	walnut or acorns (ACORNS!  oak trees should drop these instead of apples)
-- use milk to tame ocelots
+- use milk to tame ocelots (which don't even seem to spawn in peaceful)
 	can we make cheese?
 - feathers 
 	chickens could drop those like they drop eggs
@@ -121,19 +124,22 @@ DONE 	with linseed oil we could make a lantern
 paint
 PROTO	milk + dye + linseed oil
 	blocks that can be painted:  wood, stone, any others?
+	-- is painting even possible, due to block metadata being all used already?
 
 paint brush
 	sticks + animal bristle
 	
 alter some minecraft issues that i see as suboptimal:
-- be able to make straight fire 
+- be able to make actual fire 
+  -- look at how TFC does this
   -- two sticks make a fire starter, fire starter and logs make fire
-     (that duplicates flint and steel, but we can make it a single-use item)
+     (that duplicates flint and steel, but we can make it a single-use item since we need it before we find iron)
 - make torches from sticks and said fire, and have them be temporary (tick handler) 
   -- if you carry one in your hand, it lights up your surroundings
   -- permanent light fixtures would be linseed oil lanterns, for example
-- saddle recipe (leather and iron)
+- saddle recipe (leather + iron and linen + wood + iron)
 - mossy cobblestone recipe (vines and cobble)
+  -- it could also be cool, and a bit more challenging if mossy cobble spread from dungeons
 - lots of things should be paintable/dyeable
 - most every solid block should have half slabs and stairs to increase building potential
 - introduce quarter and eighth blocks (and a handsaw to saw them)
@@ -146,11 +152,13 @@ alter some minecraft issues that i see as suboptimal:
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
 - spawn nether portals in ravines
-- leave books in chests in village libraries that tell stories -- about nether portals, 	strongholds, mines, mooshrooms, desert and jungle temples, so people know there is stuff to look for.
+- leave books that tell stories in chests in village libraries -- about nether portals, strongholds, mines, mooshrooms, desert and jungle temples, so people know there is stuff to look for.
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
 - use the cauldron for something, like cooking multi-item foods
-  -- it would be cool if one then needed to point an inventory item (like a bowl or bottle) at the cauldron to get the cooked stuff out.
-  -- we'd need fire under the cauldron (see straight fire)
+  -- use a GUI to interface with the cauldron or toss items in it?
+     -- if we toss it would be cool if one then needed to point an inventory item (like a bowl or bottle) at the          
+        cauldron to get the cooked stuff out.
+  -- we'd need fire under the cauldron (see actual fire)
 - make reeds usable similarly to iron bars (wicker/bamboo panels)
 - create columns from stone, and wooden planks
 - movement should be much more sensitive to the type of ground the player is on
@@ -167,5 +175,5 @@ alter some minecraft issues that i see as suboptimal:
   -- figure out whether we can overcome the out-of-chunk issue
 - change the chests on horses so they have a smaller inventory than a full chest.
   -- chests on horses should make the horse slower / less able a jumper
-
+- nametags are so useful they should be craftable
  
