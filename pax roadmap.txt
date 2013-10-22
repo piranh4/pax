@@ -60,11 +60,19 @@ DONE	glue from smelting bones
 	craft from dung and steak/pork/chicken (or cook in cauldron)
 
 - dragon's egg
+  -- i keep thinking that this should be a difficult task, equivalent to fighting the ender dragon, only in a 
+     peaceful way.  like, taming it, but it needs to be complex.  maybe the ender dragon is injured and you need
+     to brew a special potion, and befriend a pile of endermen to deliver it with you...
 - nether star
+  -- same goes for the wither.  i wonder whether maybe both should retain their ability to attack, just not have the 
+     attacks concentrate on the player, but be more random.  just still dangerous, like a wounded animal might bite
+     you because it doesn't understand you want to help.
 - monster spawner
-  -- this is only here cause rra wants to build with it. i basically think that since you can get it from dungeons with silk touch that we shouldn't do anything special.
+  -- this is here cause rra wants to build with it. i basically think that since you can get it from dungeons with silk
+     touch that we shouldn't do anything special.  but if we make recipes for saddles, why not spawners?
 - heads (skeleton, wither skeleton, zombie, Steve, creeper)
   -- find them in middens
+  -- a villager could run a head shop.  ;)
 
 i'd like it to be possible to play in peaceful mode entirely without killing even animals = the vegetarian option.  not a necessity, mind, but a possibility.
 - another fertilizer instead of bonemeal
@@ -113,6 +121,7 @@ NO	     (do we actually need the flax straw for anything? don't think so.)
 DONE	4 linen fibre = linen block
 DONE	sticks + linen = item frame
 DONE	wooden planks + linen = bed
+	paper + linen = book
 	linen can be shaped into "armor" like leather, with very little extra protection
 DONE	flax seeds + wheat = whole grain bread (cures more hunger)
 	flax seeds x 4 = linseed oil
@@ -161,10 +170,10 @@ alter some minecraft issues that i see as suboptimal:
   -- we'd need fire under the cauldron (see actual fire)
 - make reeds usable similarly to iron bars (wicker/bamboo panels)
 - create columns from stone, and wooden planks
-- movement should be much more sensitive to the type of ground the player is on
+- movement should be much more sensitive to the type of ground the player is on, like soul sand
   -- sand slows you down, smooth stone speeds you up, for example
 - dyed sheep should not pass on the colour to their offspring
-  -- quite possibly the dye should not survive shearing either
+  -- quite possibly the dye should not survive shearing either, at least not forver
   -- but maybe we could have mutations so very rarely a funky-coloured sheep is born
 - animals should eat your cultivated crops, depending on kind (pigs eat everything, of course)
   -- eating the crop should un-till the land
@@ -176,4 +185,17 @@ alter some minecraft issues that i see as suboptimal:
 - change the chests on horses so they have a smaller inventory than a full chest.
   -- chests on horses should make the horse slower / less able a jumper
 - nametags are so useful they should be craftable
- 
+- early food should offer more variety than apples
+  -- have some nuts and berries
+
+really, really long-term plans:
+- improve villager trading AI
+  (i am sorta waiting for mojang to do that, so this is just in case they don't)
+- climate
+- seasons
+  -- animals take much longer to breed
+     --- TFC has an animal interface where it tells you the animal's sex and pregnancy status
+        (i am actually mildly opposed to introducing different sexes; i like the sexless aspects of minecraft)
+  -- plants take much longer to grow
+     -- fertilizing for proper, realistic growth conditions
+     -- crop rotation could becomes an issue
