@@ -72,40 +72,42 @@ DONE	glue from smelting bones
      touch that we shouldn't do anything special.  but if we make recipes for saddles, why not spawners?
 - heads (skeleton, wither skeleton, zombie, Steve, creeper)
   -- find them in middens
-  -- a villager could run a head shop.  ;)
+  -- a villager could run a head shop.  ;)  then we should definitely add hemp to the game.
 
 i'd like it to be possible to play in peaceful mode entirely without killing even animals = the vegetarian option.  not a necessity, mind, but a possibility.
-- another fertilizer instead of bonemeal
-	fertlizer is basically nitrogen (N) + phosphorus (P) + potash (K)
-		find those as natural compounds?  what else can we do with them?
-	could use silverfish stone to drop … calcium carbonate ?
-	ammonia/urea
-	compost
-	nitrate ore (also useful for gun powder)
-	kelp
-	oyster shells
-	animals drop dung (oh yeah, i like this one)
+- another fertilizer in addition to bonemeal
+  -- fertilizer is basically nitrogen (N) + phosphorus (P) + potash (K)
+     --- find those as natural compounds?  what else can we do with them?
+  -- could use silverfish stone to drop … calcium carbonate ?
+  -- ammonia/urea
+  -- compost
+  -- nitrate ore (also useful for gun powder)
+  -- kelp
+  -- oyster shells
+  -- animals drop dung (oh yeah, i like this one)
 - sturdier cloth instead of leather 
-	introduce linen
+  -- introduce linen
 - something to drop slimeballs
-	is cooking found bones offensive to vegetarians?  not this one. 
+  -- is cooking found bones offensive to vegetarians?  not this one. 
 - shear fur to get animal bristle from pigs, horses, cows
 - black ink
-	soot (coal) and glue (originally animal glue, *sigh* -- could use pine resin instead, or slimeballs
-	iron and citric acid (apple?)
-	walnut or acorns (ACORNS!  oak trees should drop these instead of apples)
+  -- soot (coal) and glue (originally animal glue, *sigh* -- could use pine resin instead, or slimeballs
+  -- iron and citric acid (apple?)
+  -- walnut or acorns (ACORNS!  oak trees should drop these instead of apples)
+  -- feeding squid could give it up
+     --- feed them what? norally they eat small fish, crabs, and shrimp.
 - use milk to tame ocelots (which don't even seem to spawn in peaceful)
-	can we make cheese?
+  -- can we make cheese?
 - feathers 
-	chickens could drop those like they drop eggs
-	you could shear chickens
-	chickens could drop them when killed by wolves
-		isn't that what happens now, or am i confusing it with a mod?
+  -- chickens could drop those like they drop eggs
+  -- you could shear chickens
+  -- chickens could drop them when killed by wolves
+     --- isn't that what happens now, or am i confusing it with a mod?
 
 the amazing flax usability tree:
 if we want sturdier cloth, we need
-DONE	flax seeds
-DONE		very occasionally drop from tall grass like wheat
+DONE  -- flax seeds
+DONE     --- very occasionally drop from tall grass like wheat
 		drop from tall grass when using a hoe
 			the quality of the hoe affects the drop rate
 from which we grow
@@ -122,6 +124,7 @@ DONE	4 linen fibre = linen block
 DONE	sticks + linen = item frame
 DONE	wooden planks + linen = bed
 	paper + linen = book
+	slime ball = linen = leash (weaker leash than the one made from spider silk)
 	linen can be shaped into "armor" like leather, with very little extra protection
 DONE	flax seeds + wheat = whole grain bread (cures more hunger)
 	flax seeds x 4 = linseed oil
@@ -136,7 +139,7 @@ PROTO	milk + dye + linseed oil
 	-- is painting even possible, due to block metadata being all used already?
 
 paint brush
-	sticks + animal bristle
+  -- sticks + animal bristle
 	
 alter some minecraft issues that i see as suboptimal:
 - be able to make actual fire 
@@ -187,6 +190,8 @@ alter some minecraft issues that i see as suboptimal:
 - nametags are so useful they should be craftable
 - early food should offer more variety than apples
   -- have some nuts and berries
+- the minecraft diet is not exactly balanced; adjust for that
+
 
 really, really long-term plans:
 - improve villager trading AI
@@ -198,4 +203,8 @@ really, really long-term plans:
         (i am actually mildly opposed to introducing different sexes; i like the sexless aspects of minecraft)
   -- plants take much longer to grow
      -- fertilizing for proper, realistic growth conditions
-     -- crop rotation could becomes an issue
+     -- crop rotation 
+- since "better than wolves" is finishing, implement the early tech tree from that (not like flower child owns human 
+  technological history anyway, *snrk*.)
+- plants and animals can get disease
+  -- discourage monoculture and crowded conditions
