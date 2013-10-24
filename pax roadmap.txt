@@ -8,7 +8,7 @@ stick with the "spirit" of minecraft; ie. preserve emergent gameplay instead of 
 
 the mod i want to play adds some minor "realism", but overall reality does not actually make for good gameplay either (or we would have no need for games ;), so i don't want to be caught up in it -- ie. making crops take a whole season to grow (and if your crop fails you die) is not the goal here. why i want more "realism" is because the most fun i had when i first played minecraft was in figuring things out, and i only got frustrated when i couldn't because the developers had not thought too well about a recipe.  the wiki is fantastic, but i didn't actually WANT to use it, and only did so when i really got stuck.  for example, the nether portal -- impossible to figure out.  heck, the fact that there is a nether is not intuitively discernable.  i like the idea of having a game where you require very minimal instruction to get started, and where you can figure out how to create just about anything available in the game, if you think about it a little.  so in the long run i want to develop a mod where that is possible.  eg. i might spawn nether portals, so people can stumble onto them, and then figure out what they're for, and how to create them.
 
-i also think that various aspects of the game are seriously imbalanced, and i'd like to redress that.  for example, horses carrying chests outperform minecart locomotives with chest carts, and that's wrong; horses should be less powerful.
+i also think that various aspects of the game are seriously imbalanced, and i'd like to redress that.  for example, horses carrying chests outperform minecart locomotives with chest carts, and that's wrong; horses should be less powerful.  i also want there to be incentive to build contraptions of all sorts.  in hostile people build mob farms to harvest xp and/or items; i want some form of farming (other than actual farming for food) to be useful in peaceful as well.  and i want to reward exploration.
 
 i have promised myself that i will not add a new item or new block that has only one use.  if possible, i will extend the uses for existing items (for example, use milk and dye to make paint; people used to actually do that).  i also think it would be neat if there were more than one way to make an item, and maybe have simple versions (that don't give you as much oomph) and luxury ones.  for example, one can make a bed from wooden planks and hay, but that's not comfortable enough to sleep the entire night, or maybe doesn't regen you fully, while the wool bed gives you a full night's sleep and all the regen you need.
 
@@ -164,7 +164,7 @@ alter some minecraft issues that i see as suboptimal:
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
 - spawn nether portals in ravines
-- leave books that tell stories in chests in village libraries -- about nether portals, strongholds, mines, mooshrooms, desert and jungle temples, so people know there is stuff to look for.
+- leave books that tell stories in chests in village libraries -- about nether portals, strongholds, abandoned mines, mooshrooms, desert and jungle temples, etc, so people know there is stuff to look for.
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
 - use the cauldron for something, like cooking multi-item foods
   -- use a GUI to interface with the cauldron or toss items in it?
@@ -184,14 +184,18 @@ alter some minecraft issues that i see as suboptimal:
 - the minecraft diet is not very healthy; no leafy green vegetables at all. ;)
 - build a proper locomotive, with a GUI that allows adding water and coal, that pulls minecarts
   -- can pull more than one, decide on interface (use leads?)
-  -- figure out whether we can overcome the out-of-chunk issue
+  -- figure out whether we can overcome the out-of-loaded-chunks issue
 - change the chests on horses so they have a smaller inventory than a full chest.
   -- chests on horses should make the horse slower / less able a jumper
 - nametags are so useful they should be craftable
 - early food should offer more variety than apples
   -- have some nuts and berries
-- the minecraft diet is not exactly balanced; adjust for that
-
+  -- find wheat (and flax) growing wild, instead of dropping seeds from tall grass
+- analyze all foods to make sure there is a solid progression of regained health
+- add thirst
+  -- absorb water through the skin while standing/swimming in water, but at a lower rate than drinking it
+  -- cure rate gets progressively better by drinking from: wooden bowl water bottle, bucket (milk and water)
+ 
 
 really, really long-term plans:
 - improve villager trading AI
