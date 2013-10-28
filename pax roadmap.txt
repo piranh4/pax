@@ -86,16 +86,16 @@ i'd like it to be possible to play in peaceful mode entirely without killing eve
   -- oyster shells
   -- animals drop dung (oh yeah, i like this one)
 - sturdier cloth instead of leather 
-  -- introduce linen
+  -- introduce linen (or hemp)
 - something to drop slimeballs
-  -- is cooking found bones offensive to vegetarians?  not this one. 
+  -- is cooking found bones offensive to vegetarians?  not this one, but what do i know. 
 - shear fur to get animal bristle from pigs, horses, cows
 - black ink
   -- soot (coal) and glue (originally animal glue, *sigh* -- could use pine resin instead, or slimeballs
   -- iron and citric acid (apple?)
   -- walnut or acorns (ACORNS!  oak trees should drop these instead of apples)
   -- feeding squid could give it up
-     --- feed them what? norally they eat small fish, crabs, and shrimp.
+     --- feed them what? norally they eat small fish, crabs, and shrimp (which is not a vegetarian option).
 - use milk to tame ocelots (which don't even seem to spawn in peaceful)
   -- can we make cheese?
 - feathers 
@@ -105,6 +105,7 @@ i'd like it to be possible to play in peaceful mode entirely without killing eve
      --- isn't that what happens now, or am i confusing it with a mod?
 
 the amazing flax usability tree:
+(would there be any advantage to using hemp instead (other than that a villager could run a head shop ;)?
 if we want sturdier cloth, we need
 DONE  -- flax seeds
 DONE     --- very occasionally drop from tall grass like wheat
@@ -148,15 +149,17 @@ alter some minecraft issues that i see as suboptimal:
      (that duplicates flint and steel, but we can make it a single-use item since we need it before we find iron)
 - make torches from sticks and said fire, and have them be temporary (tick handler) 
   -- if you carry one in your hand, it lights up your surroundings
-  -- permanent light fixtures would be linseed oil lanterns, for example
+  -- permanent light fixtures to replace torches as they are now would be linseed oil lanterns, for example
 - saddle recipe (leather + iron and linen + wood + iron)
 - mossy cobblestone recipe (vines and cobble)
   -- it could also be cool, and a bit more challenging if mossy cobble spread from dungeons
 - lots of things should be paintable/dyeable
 - most every solid block should have half slabs and stairs to increase building potential
-- introduce quarter and eighth blocks (and a handsaw to saw them)
+- introduce partial blocks, down to 1/8 or 1/16 (and a handsaw to saw them -- maybe have it work like chisel in TFC)
+  -- might also be nice for building to have sheets like snow
 - introduce facades/siding/wall covering
-- lots more things should provide fuel
+  -- find out how to make it occupy the same block from two sides in corners, like item frames do now
+- lots more things should provide fuel (though really, nobody uses them anyway)
 - some crafted blocks should come apart again (with some loss)
 - more doors 
   -- more materials, and iron bar door, reed door, linen curtain (walk through even if closed?)
@@ -164,7 +167,13 @@ alter some minecraft issues that i see as suboptimal:
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
 - spawn nether portals in ravines
-- leave books that tell stories in chests in village libraries -- about nether portals, strongholds, abandoned mines, mooshrooms, desert and jungle temples, etc, so people know there is stuff to look for.
+- leave books that tell stories in chests in village libraries 
+  -- about nether portals, strongholds, abandoned mines, mooshrooms, desert and jungle temples, etc, 
+     so people know there is stuff to look for.
+- find some in-game ways to introduce people to things they can make that are non-obvious
+  -- stuff that uses complicated recipes is non-obvious (cake)
+  -- stuff that doesn't actually exist is non-obvious (enchantment system, potions)
+  -- stuff that sorta exists, but not in this form is non-obvious (redstone items, pistons, sticky epecially)
 - make ore-spawning more biome-dependent?  maybe only worth it if we have more ores.
 - use the cauldron for something, like cooking multi-item foods
   -- use a GUI to interface with the cauldron or toss items in it?
@@ -182,6 +191,7 @@ alter some minecraft issues that i see as suboptimal:
   -- eating the crop should un-till the land
 - have fruit trees instead of apples dropping from oaks
 - the minecraft diet is not very healthy; no leafy green vegetables at all. ;)
+  -- maybe in general food should make more sense; a loaf of bread or a cooked chicken lasts for a day
 - build a proper locomotive, with a GUI that allows adding water and coal, that pulls minecarts
   -- can pull more than one, decide on interface (use leads?)
   -- figure out whether we can overcome the out-of-loaded-chunks issue
@@ -194,7 +204,8 @@ alter some minecraft issues that i see as suboptimal:
 - analyze all foods to make sure there is a solid progression of regained health
 - add thirst
   -- absorb water through the skin while standing/swimming in water, but at a lower rate than drinking it
-  -- cure rate gets progressively better by drinking from: wooden bowl water bottle, bucket (milk and water)
+  -- cure rate gets progressively better by drinking from: wooden bowl, water bottle, bucket (milk and water)
+- i want the chisel from TFC!  OMG, so awesome.
  
 
 really, really long-term plans:
@@ -206,9 +217,17 @@ really, really long-term plans:
      --- TFC has an animal interface where it tells you the animal's sex and pregnancy status
         (i am actually mildly opposed to introducing different sexes; i like the sexless aspects of minecraft)
   -- plants take much longer to grow
-     -- fertilizing for proper, realistic growth conditions
+     -- fertilizing for more realistic growth conditions
      -- crop rotation 
 - since "better than wolves" is finishing, implement the early tech tree from that (not like flower child owns human 
   technological history anyway, *snrk*.)
 - plants and animals can get disease
   -- discourage monoculture and crowded conditions
+
+
+"hard" limitations in current minecraft
+- blocks can have max 4 bits of metadata (16 states)
+- total block types in game 1024?  or 4096?  check.  it is better to use metadata whenever possible for any new blocks (unless they themselves have metadata)  kinda unelegant, but ...
+- too many tile entities causes performance problems.  how many is "too many"?
+- minecraft is moving away from using block IDs.  forge already doesn't like them. use objects instead.
+
