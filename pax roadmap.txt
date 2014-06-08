@@ -58,6 +58,7 @@ DONE	glue from smelting bones
 	from bad oysters that don't give ender pearls
 	"old" animals drop it when despawning
 	craft from dung and steak/pork/chicken (or cook in cauldron)
+  -- should we craft it ino leather?  that'd probaby just be circular
 
 - dragon's egg
   -- i keep thinking that this should be a difficult task, equivalent to fighting the ender dragon, only in a 
@@ -125,7 +126,7 @@ DONE	4 linen fibre = linen block
 DONE	sticks + linen = item frame
 DONE	wooden planks + linen = bed
 	paper + linen = book
-	slime ball = linen = leash (weaker leash than the one made from spider silk)
+	slime ball + linen = leash (weaker leash than the one made from spider silk?)
 	linen can be shaped into "armor" like leather, with very little extra protection
 DONE	flax seeds + wheat = whole grain bread (cures more hunger)
 	flax seeds x 4 = linseed oil
@@ -166,10 +167,15 @@ alter some minecraft issues that i see as suboptimal:
   -- umm. how about trees?
 - don't hit trees to get wood at the start, hit leaves to get sticks
 - have a set of flint tools available early on instead of most wooden tools (shovel ok, pickaxe not)
+  -- i'd really like to redesign the whole tool chain, including recipes (cordage should come very early).  
+     stone hammer, for example (stone/cobble + cordage + stick)
+     iron hammer - iron + sap/pitch + stick
 - spawn nether portals in ravines
 - leave books that tell stories in chests in village libraries 
   -- about nether portals, strongholds, abandoned mines, mooshrooms, desert and jungle temples, etc, 
      so people know there is stuff to look for.
+     --- tell a story that stuff you find in villages might not be the best way of doing things, since villagers are
+         simple folk, *snrk*.  so we could introduce enchantments but not with the max book shelves, for example
 - find some in-game ways to introduce people to things they can make that are non-obvious
   -- stuff that uses complicated recipes is non-obvious (cake)
   -- stuff that doesn't actually exist is non-obvious (enchantment system, potions)
@@ -195,6 +201,7 @@ alter some minecraft issues that i see as suboptimal:
 - build a proper locomotive, with a GUI that allows adding water and coal, that pulls minecarts
   -- can pull more than one, decide on interface (use leads?)
   -- figure out whether we can overcome the out-of-loaded-chunks issue
+     (chickenbones has a chunk loader that handles this)
 - change the chests on horses so they have a smaller inventory than a full chest.
   -- chests on horses should make the horse slower / less able a jumper
 - nametags are so useful they should be craftable
@@ -206,11 +213,13 @@ alter some minecraft issues that i see as suboptimal:
   -- absorb water through the skin while standing/swimming in water, but at a lower rate than drinking it
   -- cure rate gets progressively better by drinking from: wooden bowl, water bottle, bucket (milk and water)
 - i want the chisel from TFC!  OMG, so awesome.
+- i'd like it if eating the red mushroom would poison you, and only the brown one made stew/soup
  
 
 really, really long-term plans:
 - improve villager trading AI
   (i am sorta waiting for mojang to do that, so this is just in case they don't)
+- do something more interesting for peaceful folks with the end
 - climate
 - seasons
   -- animals take much longer to breed
